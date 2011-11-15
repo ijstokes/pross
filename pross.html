@@ -1,0 +1,979 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pross</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pross</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/ijstokes/github/pross/pross.py">/home/ijstokes/github/pross/pross.py</a></font></td></tr></table>
+    <p><tt>Calulate&nbsp;all&nbsp;torsion&nbsp;angles&nbsp;and&nbsp;assign&nbsp;secondary&nbsp;structure&nbsp;and&nbsp;mesostate&nbsp;code.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;uses&nbsp;much&nbsp;of&nbsp;the&nbsp;code&nbsp;from&nbsp;the&nbsp;original&nbsp;BIOMOL&nbsp;collection&nbsp;of<br>
+utilities&nbsp;written&nbsp;by&nbsp;Raj&nbsp;Srinivasani&nbsp;with&nbsp;enhancements&nbsp;by&nbsp;Nick&nbsp;Fitzkee.<br>
+&nbsp;<br>
+The&nbsp;script&nbsp;was&nbsp;put&nbsp;together&nbsp;by&nbsp;Pat&nbsp;Fleming&nbsp;so&nbsp;that&nbsp;a&nbsp;user&nbsp;would&nbsp;not&nbsp;need<br>
+to&nbsp;have&nbsp;the&nbsp;BIOMOL&nbsp;distribution&nbsp;installed&nbsp;to&nbsp;run&nbsp;PROSS.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;since&nbsp;Raj's&nbsp;time&nbsp;the&nbsp;definitions&nbsp;of&nbsp;mesostates&nbsp;has&nbsp;been&nbsp;superceded<br>
+by&nbsp;the&nbsp;fine&nbsp;grained&nbsp;30&nbsp;deg&nbsp;x&nbsp;30&nbsp;deg&nbsp;grid&nbsp;for&nbsp;most&nbsp;purposes.&nbsp;Either&nbsp;mesostate<br>
+grid&nbsp;will&nbsp;work&nbsp;for&nbsp;PROSS.&nbsp;Give&nbsp;your&nbsp;choice&nbsp;as&nbsp;an&nbsp;argument&nbsp;(see&nbsp;USAGE&nbsp;below).<br>
+&nbsp;<br>
+Date:&nbsp;September&nbsp;2004<br>
+Author:&nbsp;Pat&nbsp;Fleming,&nbsp;pat.fleming@jhu.edu</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+<a href="gzip.html">gzip</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="string.html">string</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="types.html">types</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pross.html#Atom3d">Atom3d</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pross.html#PDBFile">PDBFile</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pross.html#TypedList">TypedList</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pross.html#molChain">molChain</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pross.html#Protein">Protein</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="pross.html#molMol">molMol</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pross.html#molResidue">molResidue</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pross.html#AminoAcid">AminoAcid</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AminoAcid">class <strong>AminoAcid</strong></a>(<a href="pross.html#molResidue">molResidue</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pross.html#AminoAcid">AminoAcid</a></dd>
+<dd><a href="pross.html#molResidue">molResidue</a></dd>
+<dd><a href="pross.html#TypedList">TypedList</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="AminoAcid-assign_radii"><strong>assign_radii</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AminoAcid-chi1"><strong>chi1</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AminoAcid-chi2"><strong>chi2</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AminoAcid-chi3"><strong>chi3</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AminoAcid-chi4"><strong>chi4</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#molResidue">molResidue</a>:<br>
+<dl><dt><a name="AminoAcid-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, atoms<font color="#909090">=None</font>, **kw)</dt></dl>
+
+<dl><dt><a name="AminoAcid-atom_coordinates"><strong>atom_coordinates</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;coordinates&nbsp;of&nbsp;named&nbsp;atoms.<br>
+If&nbsp;names&nbsp;is&nbsp;omitted&nbsp;all&nbsp;atom&nbsp;coordinates&nbsp;are&nbsp;returned.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-atoms"><strong>atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;atoms&nbsp;within&nbsp;the&nbsp;<a href="#molResidue">molResidue</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-atoms_not_with_name"><strong>atoms_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;excluding&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-atoms_with_name"><strong>atoms_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-delete_atoms_with_name"><strong>delete_atoms_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-has_atom"><strong>has_atom</strong></a>(self, name)</dt><dd><tt>returns&nbsp;true&nbsp;if&nbsp;residue&nbsp;has&nbsp;an&nbsp;atom&nbsp;named&nbsp;'name'</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-num_atoms"><strong>num_atoms</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;number&nbsp;of&nbsp;atoms&nbsp;in&nbsp;residue</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-type"><strong>type</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#TypedList">TypedList</a>:<br>
+<dl><dt><a name="AminoAcid-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__deepcopy__"><strong>__deepcopy__</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__rmul__"><strong>__rmul__</strong></a> = __mul__(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-clone"><strong>clone</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="AminoAcid-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Atom3d">class <strong>Atom3d</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#TypedList">TypedList</a>&nbsp;class&nbsp;for&nbsp;atoms&nbsp;with&nbsp;3-D&nbsp;coordinates.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Atom3d-__copy__"><strong>__copy__</strong></a> = <a href="#Atom3d-clone">clone</a>(self)</dt></dl>
+
+<dl><dt><a name="Atom3d-__init__"><strong>__init__</strong></a>(self, x, y, z, cnf<font color="#909090">={}</font>)</dt></dl>
+
+<dl><dt><a name="Atom3d-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Formats&nbsp;atom&nbsp;coordinates&nbsp;into&nbsp;a&nbsp;printable&nbsp;format.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-__str__"><strong>__str__</strong></a> = <a href="#Atom3d-__repr__">__repr__</a>(self)</dt></dl>
+
+<dl><dt><a name="Atom3d-angle"><strong>angle</strong></a>(self, a, b, sqrt<font color="#909090">=&lt;built-in function sqrt&gt;</font>, acos<font color="#909090">=&lt;built-in function acos&gt;</font>)</dt></dl>
+
+<dl><dt><a name="Atom3d-clone"><strong>clone</strong></a>(self)</dt><dd><tt>Creates&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;<a href="#Atom3d">Atom3d</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-coords"><strong>coords</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;3-D&nbsp;coordinates&nbsp;of&nbsp;an&nbsp;atom.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-distance"><strong>distance</strong></a>(self, other, sqrt<font color="#909090">=&lt;built-in function sqrt&gt;</font>)</dt><dd><tt>Calculate&nbsp;the&nbsp;distance&nbsp;between&nbsp;an&nbsp;atom&nbsp;and&nbsp;a&nbsp;specified&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-set_coords"><strong>set_coords</strong></a>(self, x, y<font color="#909090">=None</font>, z<font color="#909090">=None</font>)</dt><dd><tt>Sets&nbsp;the&nbsp;3-D&nbsp;coordinates&nbsp;of&nbsp;an&nbsp;atom.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-sqr_distance"><strong>sqr_distance</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Atom3d-torsion"><strong>torsion</strong></a>(self, a, b, c, sqrt<font color="#909090">=&lt;built-in function sqrt&gt;</font>, acos<font color="#909090">=&lt;built-in function acos&gt;</font>)</dt></dl>
+
+<dl><dt><a name="Atom3d-xcoord"><strong>xcoord</strong></a>(self, v<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;x-coordinate&nbsp;of&nbsp;an&nbsp;atom.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-ycoord"><strong>ycoord</strong></a>(self, v<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;y-coordinate&nbsp;of&nbsp;an&nbsp;atom.</tt></dd></dl>
+
+<dl><dt><a name="Atom3d-zcoord"><strong>zcoord</strong></a>(self, v<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;z-coordinate&nbsp;of&nbsp;an&nbsp;atom.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PDBFile">class <strong>PDBFile</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Contains&nbsp;methods&nbsp;for&nbsp;reading&nbsp;chains&nbsp;from&nbsp;a&nbsp;PDB&nbsp;File.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PDBFile-__init__"><strong>__init__</strong></a>(self, filename)</dt></dl>
+
+<dl><dt><a name="PDBFile-read"><strong>read</strong></a>(self, as_protein<font color="#909090">=0</font>, as_rna<font color="#909090">=0</font>, as_dna<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="PDBFile-read_chain"><strong>read_chain</strong></a>(self, as_protein<font color="#909090">=0</font>, as_rna<font color="#909090">=0</font>, as_dna<font color="#909090">=0</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Protein">class <strong>Protein</strong></a>(<a href="pross.html#molChain">molChain</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#TypedList">TypedList</a>&nbsp;containing&nbsp;Proteins,&nbsp;set&nbsp;by&nbsp;`_is_a_protein`.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pross.html#Protein">Protein</a></dd>
+<dd><a href="pross.html#molChain">molChain</a></dd>
+<dd><a href="pross.html#TypedList">TypedList</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Protein-backbone_atoms"><strong>backbone_atoms</strong></a>(self, *ids)</dt><dd><tt>If&nbsp;the&nbsp;atom&nbsp;name&nbsp;matches&nbsp;any&nbsp;in&nbsp;bb_atoms,&nbsp;make&nbsp;a&nbsp;new&nbsp;residue&nbsp;and&nbsp;add&nbsp;to&nbsp;a&nbsp;chain.</tt></dd></dl>
+
+<dl><dt><a name="Protein-chi1"><strong>chi1</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-chi2"><strong>chi2</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-chi3"><strong>chi3</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-chi4"><strong>chi4</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-clean"><strong>clean</strong></a>(self)</dt><dd><tt><a href="#Protein-clean">clean</a>()&nbsp;-&nbsp;remove&nbsp;residues&nbsp;if&nbsp;they&nbsp;lack&nbsp;N,&nbsp;CA,&nbsp;or&nbsp;C&nbsp;atoms</tt></dd></dl>
+
+<dl><dt><a name="Protein-codes"><strong>codes</strong></a>(self, phi<font color="#909090">=None</font>, psi<font color="#909090">=None</font>, ome<font color="#909090">=None</font>, mcodes<font color="#909090">=None</font>)</dt><dd><tt>Executes&nbsp;the&nbsp;rc_codes&nbsp;method&nbsp;on&nbsp;a&nbsp;protein.</tt></dd></dl>
+
+<dl><dt><a name="Protein-gaps"><strong>gaps</strong></a>(self)</dt><dd><tt><a href="#Protein-gaps">gaps</a>()&nbsp;-&nbsp;identify&nbsp;gaps&nbsp;in&nbsp;the&nbsp;chain<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;does&nbsp;a&nbsp;simple&nbsp;check&nbsp;to&nbsp;determine&nbsp;whether&nbsp;CA&nbsp;atoms&nbsp;are<br>
+contiguous&nbsp;in&nbsp;the&nbsp;peptide&nbsp;chain.&nbsp;&nbsp;First&nbsp;it,&nbsp;checks&nbsp;that&nbsp;CA&nbsp;atoms<br>
+exist&nbsp;for&nbsp;all&nbsp;residues.&nbsp;&nbsp;If&nbsp;that's&nbsp;okay,&nbsp;it&nbsp;checks&nbsp;to&nbsp;see&nbsp;if&nbsp;the<br>
+distance&nbsp;is&nbsp;less&nbsp;than&nbsp;18**0.5&nbsp;A.&nbsp;&nbsp;If&nbsp;either&nbsp;of&nbsp;these&nbsp;checks&nbsp;fail,<br>
+residues&nbsp;involved&nbsp;in&nbsp;a&nbsp;gap&nbsp;have&nbsp;their&nbsp;.gap&nbsp;attribute&nbsp;set&nbsp;to&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="Protein-omega"><strong>omega</strong></a>(self, i)</dt><dd><tt><a href="#Protein-omega">omega</a>(i)&nbsp;-&nbsp;calculate&nbsp;omega&nbsp;torsion&nbsp;for&nbsp;index&nbsp;i<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;calcualtes&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;omega&nbsp;torsion&nbsp;for<br>
+index&nbsp;i.&nbsp;&nbsp;Note:&nbsp;this&nbsp;value&nbsp;is&nbsp;widely&nbsp;calculated&nbsp;using&nbsp;atoms<br>
+CA(i-1),&nbsp;C(i-1),&nbsp;N(i),&nbsp;and&nbsp;CA(i).&nbsp;&nbsp;These&nbsp;atoms&nbsp;are&nbsp;used&nbsp;for<br>
+this&nbsp;calculation.&nbsp;&nbsp;However,&nbsp;other&nbsp;LINUS&nbsp;programs&nbsp;use&nbsp;the&nbsp;fllowing<br>
+atoms:&nbsp;CA(i),&nbsp;C(i),&nbsp;N(i+1),&nbsp;CA(i+1).&nbsp;&nbsp;Forewarned&nbsp;is&nbsp;forearmed.</tt></dd></dl>
+
+<dl><dt><a name="Protein-phi"><strong>phi</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-pross"><strong>pross</strong></a>(self, phi<font color="#909090">=None</font>, psi<font color="#909090">=None</font>, ome<font color="#909090">=None</font>, mcodes<font color="#909090">=None</font>)</dt><dd><tt>Executes&nbsp;the&nbsp;rc_ss&nbsp;method&nbsp;on&nbsp;a&nbsp;protein.</tt></dd></dl>
+
+<dl><dt><a name="Protein-psi"><strong>psi</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="Protein-sequence"><strong>sequence</strong></a>(self, one<font color="#909090">=0</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;protein&nbsp;sequence.</tt></dd></dl>
+
+<dl><dt><a name="Protein-torsions"><strong>torsions</strong></a>(self, i<font color="#909090">=None</font>, map<font color="#909090">=&lt;built-in function map&gt;</font>)</dt></dl>
+
+<dl><dt><a name="Protein-type"><strong>type</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#molChain">molChain</a>:<br>
+<dl><dt><a name="Protein-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, residues<font color="#909090">=None</font>, **kw)</dt></dl>
+
+<dl><dt><a name="Protein-assign_radii"><strong>assign_radii</strong></a>(self)</dt><dd><tt>Assigns&nbsp;the&nbsp;radius&nbsp;of&nbsp;residues&nbsp;in&nbsp;a&nbsp;<a href="#molChain">molChain</a></tt></dd></dl>
+
+<dl><dt><a name="Protein-atom_coordinates"><strong>atom_coordinates</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;coordinates&nbsp;of&nbsp;named&nbsp;atoms.&nbsp;if&nbsp;names&nbsp;is&nbsp;None<br>
+all&nbsp;atom&nbsp;coordinates&nbsp;are&nbsp;returned.</tt></dd></dl>
+
+<dl><dt><a name="Protein-atoms"><strong>atoms</strong></a>(self)</dt><dd><tt>returns&nbsp;a&nbsp;python&nbsp;list&nbsp;of&nbsp;atoms&nbsp;in&nbsp;a&nbsp;residue.</tt></dd></dl>
+
+<dl><dt><a name="Protein-atoms_not_with_name"><strong>atoms_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;excluding&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="Protein-atoms_with_name"><strong>atoms_with_name</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;atoms&nbsp;that&nbsp;match&nbsp;the&nbsp;specified&nbsp;names.</tt></dd></dl>
+
+<dl><dt><a name="Protein-delete_alt_locs"><strong>delete_alt_locs</strong></a>(self)</dt><dd><tt>delete_alt_locs&nbsp;-&nbsp;remove&nbsp;secondary&nbsp;conformations&nbsp;in&nbsp;the&nbsp;chain<br>
+&nbsp;<br>
+In&nbsp;a&nbsp;chain&nbsp;with&nbsp;multiple&nbsp;occupancy&nbsp;and&nbsp;alternate&nbsp;location&nbsp;identifiers,<br>
+it&nbsp;is&nbsp;often&nbsp;desirable&nbsp;to&nbsp;eliminate&nbsp;the&nbsp;secondary&nbsp;conformations&nbsp;for<br>
+use&nbsp;in&nbsp;simulation,&nbsp;etc.&nbsp;&nbsp;This&nbsp;function&nbsp;(abitrarily)&nbsp;finds&nbsp;and&nbsp;selects<br>
+the&nbsp;first&nbsp;given&nbsp;conformation&nbsp;and&nbsp;deletes&nbsp;all&nbsp;other&nbsp;conformations.</tt></dd></dl>
+
+<dl><dt><a name="Protein-delete_atoms_with_name"><strong>delete_atoms_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="Protein-delete_hetero"><strong>delete_hetero</strong></a>(self)</dt><dd><tt>delete&nbsp;all&nbsp;hetero&nbsp;atoms&nbsp;from&nbsp;a&nbsp;protein<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;removes&nbsp;all&nbsp;HETATM&nbsp;records&nbsp;from&nbsp;the&nbsp;molecular<br>
+structure.&nbsp;&nbsp;This&nbsp;include&nbsp;waters,&nbsp;heme&nbsp;groups,&nbsp;as&nbsp;well&nbsp;as&nbsp;residues<br>
+with&nbsp;nonstandard&nbsp;structures</tt></dd></dl>
+
+<dl><dt><a name="Protein-delete_residues_with_name"><strong>delete_residues_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;specified&nbsp;residues&nbsp;from&nbsp;Chain</tt></dd></dl>
+
+<dl><dt><a name="Protein-delete_waters"><strong>delete_waters</strong></a>(self)</dt><dd><tt>Delete&nbsp;water&nbsp;molecules&nbsp;from&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-num_atoms"><strong>num_atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;atoms&nbsp;in&nbsp;each&nbsp;residue&nbsp;within&nbsp;a&nbsp;chain.</tt></dd></dl>
+
+<dl><dt><a name="Protein-num_residues"><strong>num_residues</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;residues&nbsp;within&nbsp;a&nbsp;chain.</tt></dd></dl>
+
+<dl><dt><a name="Protein-preserve_chain_hetero"><strong>preserve_chain_hetero</strong></a>(self)</dt><dd><tt>prevent&nbsp;hetero&nbsp;residues&nbsp;from&nbsp;being&nbsp;deleted&nbsp;as&nbsp;hetero&nbsp;atoms<br>
+&nbsp;<br>
+Normally,&nbsp;delete_hetero&nbsp;will&nbsp;delete&nbsp;all&nbsp;hetero&nbsp;atoms&nbsp;from&nbsp;a<br>
+molecule.&nbsp;This&nbsp;includes&nbsp;waters&nbsp;and&nbsp;heterogroups&nbsp;(hemes,&nbsp;etc.),<br>
+but&nbsp;it&nbsp;also&nbsp;includes&nbsp;hetero&nbsp;residues--nonstandard&nbsp;residues<br>
+that&nbsp;have&nbsp;backbone&nbsp;connectivity&nbsp;but&nbsp;perhaps&nbsp;extra&nbsp;atoms&nbsp;(e.g.<br>
+S-hydroxy-cysteine).&nbsp;&nbsp;Deleting&nbsp;these&nbsp;residues&nbsp;may&nbsp;disrupt&nbsp;an<br>
+otherwise&nbsp;continuous&nbsp;chain&nbsp;and&nbsp;may&nbsp;be&nbsp;undesirable.<br>
+&nbsp;<br>
+Given&nbsp;that&nbsp;a&nbsp;chain&nbsp;has&nbsp;a&nbsp;valid&nbsp;SEQRES&nbsp;entry,&nbsp;this&nbsp;function&nbsp;will<br>
+'unset'&nbsp;the&nbsp;hetero&nbsp;flag&nbsp;for&nbsp;heterogroups&nbsp;that&nbsp;are&nbsp;involved&nbsp;in<br>
+the&nbsp;sequence&nbsp;itself.&nbsp;&nbsp;When&nbsp;delete_hetero&nbsp;is&nbsp;run,&nbsp;these&nbsp;atoms<br>
+will&nbsp;be&nbsp;preserved.</tt></dd></dl>
+
+<dl><dt><a name="Protein-residues_not_with_name"><strong>residues_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;residues&nbsp;excluding&nbsp;specified&nbsp;names&nbsp;as&nbsp;a&nbsp;python&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="Protein-residues_with_name"><strong>residues_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;specified&nbsp;residues&nbsp;as&nbsp;a&nbsp;python&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="Protein-rotatex"><strong>rotatex</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;X-axis.</tt></dd></dl>
+
+<dl><dt><a name="Protein-rotatey"><strong>rotatey</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;Y-axis.</tt></dd></dl>
+
+<dl><dt><a name="Protein-rotatez"><strong>rotatez</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;Z-axis.</tt></dd></dl>
+
+<dl><dt><a name="Protein-translate"><strong>translate</strong></a>(self, dx, dy<font color="#909090">=None</font>, dz<font color="#909090">=None</font>)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#TypedList">TypedList</a>:<br>
+<dl><dt><a name="Protein-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__deepcopy__"><strong>__deepcopy__</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__rmul__"><strong>__rmul__</strong></a> = __mul__(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="Protein-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-clone"><strong>clone</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="Protein-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="Protein-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="Protein-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TypedList">class <strong>TypedList</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;Python&nbsp;list&nbsp;restricted&nbsp;to&nbsp;having&nbsp;objects&nbsp;of&nbsp;the&nbsp;same&nbsp;type.<br>
+An&nbsp;instance&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;is&nbsp;created&nbsp;as&nbsp;follows:<br>
+&nbsp;<br>
+mylist&nbsp;=&nbsp;<a href="#TypedList">TypedList</a>(function,&nbsp;[elements])<br>
+&nbsp;<br>
+where&nbsp;function&nbsp;is&nbsp;a&nbsp;python&nbsp;function&nbsp;which&nbsp;takes&nbsp;an&nbsp;argument<br>
+and&nbsp;returns&nbsp;1&nbsp;or&nbsp;0&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;object&nbsp;represented<br>
+by&nbsp;the&nbsp;argument&nbsp;is&nbsp;of&nbsp;the&nbsp;correct&nbsp;type,&nbsp;and&nbsp;elements&nbsp;is&nbsp;an&nbsp;optional<br>
+list&nbsp;of&nbsp;elements&nbsp;to&nbsp;be&nbsp;added&nbsp;into&nbsp;the&nbsp;instance.&nbsp;&nbsp;Here&nbsp;is&nbsp;a<br>
+full&nbsp;blown&nbsp;example.<br>
+&nbsp;<br>
+def&nbsp;is_int(o):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;type(o)&nbsp;==&nbsp;type(0)<br>
+&nbsp;<br>
+mylist&nbsp;=&nbsp;<a href="#TypedList">TypedList</a>(is_int,&nbsp;[0,&nbsp;1,&nbsp;2,&nbsp;3])<br>
+&nbsp;<br>
+New&nbsp;elements&nbsp;are&nbsp;added&nbsp;to&nbsp;the&nbsp;list&nbsp;as&nbsp;follows:<br>
+mylist.<a href="#TypedList-append">append</a>(25)<br>
+&nbsp;<br>
+Instances&nbsp;of&nbsp;<a href="#TypedList">TypedList</a>&nbsp;support&nbsp;all&nbsp;operations&nbsp;available&nbsp;for<br>
+Python&nbsp;Lists&nbsp;(as&nbsp;of&nbsp;Python&nbsp;version&nbsp;1.5.2a2)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TypedList-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__deepcopy__"><strong>__deepcopy__</strong></a> = <a href="#TypedList-__copy__">__copy__</a>(self)</dt></dl>
+
+<dl><dt><a name="TypedList-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__init__"><strong>__init__</strong></a>(self, function, elements<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="TypedList-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__rmul__"><strong>__rmul__</strong></a> = <a href="#TypedList-__mul__">__mul__</a>(self, other)</dt></dl>
+
+<dl><dt><a name="TypedList-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-clone"><strong>clone</strong></a> = <a href="#TypedList-__copy__">__copy__</a>(self)</dt></dl>
+
+<dl><dt><a name="TypedList-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="TypedList-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="molChain">class <strong>molChain</strong></a>(<a href="pross.html#TypedList">TypedList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#TypedList">TypedList</a>&nbsp;containing&nbsp;only&nbsp;items&nbsp;of&nbsp;the&nbsp;chain<br>
+type,&nbsp;set&nbsp;with&nbsp;`is_a_chain`<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="molChain-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, residues<font color="#909090">=None</font>, **kw)</dt></dl>
+
+<dl><dt><a name="molChain-assign_radii"><strong>assign_radii</strong></a>(self)</dt><dd><tt>Assigns&nbsp;the&nbsp;radius&nbsp;of&nbsp;residues&nbsp;in&nbsp;a&nbsp;<a href="#molChain">molChain</a></tt></dd></dl>
+
+<dl><dt><a name="molChain-atom_coordinates"><strong>atom_coordinates</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;coordinates&nbsp;of&nbsp;named&nbsp;atoms.&nbsp;if&nbsp;names&nbsp;is&nbsp;None<br>
+all&nbsp;atom&nbsp;coordinates&nbsp;are&nbsp;returned.</tt></dd></dl>
+
+<dl><dt><a name="molChain-atoms"><strong>atoms</strong></a>(self)</dt><dd><tt>returns&nbsp;a&nbsp;python&nbsp;list&nbsp;of&nbsp;atoms&nbsp;in&nbsp;a&nbsp;residue.</tt></dd></dl>
+
+<dl><dt><a name="molChain-atoms_not_with_name"><strong>atoms_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;excluding&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molChain-atoms_with_name"><strong>atoms_with_name</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;atoms&nbsp;that&nbsp;match&nbsp;the&nbsp;specified&nbsp;names.</tt></dd></dl>
+
+<dl><dt><a name="molChain-delete_alt_locs"><strong>delete_alt_locs</strong></a>(self)</dt><dd><tt>delete_alt_locs&nbsp;-&nbsp;remove&nbsp;secondary&nbsp;conformations&nbsp;in&nbsp;the&nbsp;chain<br>
+&nbsp;<br>
+In&nbsp;a&nbsp;chain&nbsp;with&nbsp;multiple&nbsp;occupancy&nbsp;and&nbsp;alternate&nbsp;location&nbsp;identifiers,<br>
+it&nbsp;is&nbsp;often&nbsp;desirable&nbsp;to&nbsp;eliminate&nbsp;the&nbsp;secondary&nbsp;conformations&nbsp;for<br>
+use&nbsp;in&nbsp;simulation,&nbsp;etc.&nbsp;&nbsp;This&nbsp;function&nbsp;(abitrarily)&nbsp;finds&nbsp;and&nbsp;selects<br>
+the&nbsp;first&nbsp;given&nbsp;conformation&nbsp;and&nbsp;deletes&nbsp;all&nbsp;other&nbsp;conformations.</tt></dd></dl>
+
+<dl><dt><a name="molChain-delete_atoms_with_name"><strong>delete_atoms_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molChain-delete_hetero"><strong>delete_hetero</strong></a>(self)</dt><dd><tt>delete&nbsp;all&nbsp;hetero&nbsp;atoms&nbsp;from&nbsp;a&nbsp;protein<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;removes&nbsp;all&nbsp;HETATM&nbsp;records&nbsp;from&nbsp;the&nbsp;molecular<br>
+structure.&nbsp;&nbsp;This&nbsp;include&nbsp;waters,&nbsp;heme&nbsp;groups,&nbsp;as&nbsp;well&nbsp;as&nbsp;residues<br>
+with&nbsp;nonstandard&nbsp;structures</tt></dd></dl>
+
+<dl><dt><a name="molChain-delete_residues_with_name"><strong>delete_residues_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;specified&nbsp;residues&nbsp;from&nbsp;Chain</tt></dd></dl>
+
+<dl><dt><a name="molChain-delete_waters"><strong>delete_waters</strong></a>(self)</dt><dd><tt>Delete&nbsp;water&nbsp;molecules&nbsp;from&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-num_atoms"><strong>num_atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;atoms&nbsp;in&nbsp;each&nbsp;residue&nbsp;within&nbsp;a&nbsp;chain.</tt></dd></dl>
+
+<dl><dt><a name="molChain-num_residues"><strong>num_residues</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;residues&nbsp;within&nbsp;a&nbsp;chain.</tt></dd></dl>
+
+<dl><dt><a name="molChain-preserve_chain_hetero"><strong>preserve_chain_hetero</strong></a>(self)</dt><dd><tt>prevent&nbsp;hetero&nbsp;residues&nbsp;from&nbsp;being&nbsp;deleted&nbsp;as&nbsp;hetero&nbsp;atoms<br>
+&nbsp;<br>
+Normally,&nbsp;delete_hetero&nbsp;will&nbsp;delete&nbsp;all&nbsp;hetero&nbsp;atoms&nbsp;from&nbsp;a<br>
+molecule.&nbsp;This&nbsp;includes&nbsp;waters&nbsp;and&nbsp;heterogroups&nbsp;(hemes,&nbsp;etc.),<br>
+but&nbsp;it&nbsp;also&nbsp;includes&nbsp;hetero&nbsp;residues--nonstandard&nbsp;residues<br>
+that&nbsp;have&nbsp;backbone&nbsp;connectivity&nbsp;but&nbsp;perhaps&nbsp;extra&nbsp;atoms&nbsp;(e.g.<br>
+S-hydroxy-cysteine).&nbsp;&nbsp;Deleting&nbsp;these&nbsp;residues&nbsp;may&nbsp;disrupt&nbsp;an<br>
+otherwise&nbsp;continuous&nbsp;chain&nbsp;and&nbsp;may&nbsp;be&nbsp;undesirable.<br>
+&nbsp;<br>
+Given&nbsp;that&nbsp;a&nbsp;chain&nbsp;has&nbsp;a&nbsp;valid&nbsp;SEQRES&nbsp;entry,&nbsp;this&nbsp;function&nbsp;will<br>
+'unset'&nbsp;the&nbsp;hetero&nbsp;flag&nbsp;for&nbsp;heterogroups&nbsp;that&nbsp;are&nbsp;involved&nbsp;in<br>
+the&nbsp;sequence&nbsp;itself.&nbsp;&nbsp;When&nbsp;delete_hetero&nbsp;is&nbsp;run,&nbsp;these&nbsp;atoms<br>
+will&nbsp;be&nbsp;preserved.</tt></dd></dl>
+
+<dl><dt><a name="molChain-residues_not_with_name"><strong>residues_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;residues&nbsp;excluding&nbsp;specified&nbsp;names&nbsp;as&nbsp;a&nbsp;python&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="molChain-residues_with_name"><strong>residues_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;specified&nbsp;residues&nbsp;as&nbsp;a&nbsp;python&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="molChain-rotatex"><strong>rotatex</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;X-axis.</tt></dd></dl>
+
+<dl><dt><a name="molChain-rotatey"><strong>rotatey</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;Y-axis.</tt></dd></dl>
+
+<dl><dt><a name="molChain-rotatez"><strong>rotatez</strong></a>(self, theta)</dt><dd><tt>Rotates&nbsp;residues&nbsp;in&nbsp;the&nbsp;<a href="#molChain">molChain</a>&nbsp;by&nbsp;the&nbsp;Z-axis.</tt></dd></dl>
+
+<dl><dt><a name="molChain-translate"><strong>translate</strong></a>(self, dx, dy<font color="#909090">=None</font>, dz<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="molChain-type"><strong>type</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;<a href="#molChain">molChain</a>.&nbsp;Should&nbsp;always&nbsp;be&nbsp;`Chain`</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#TypedList">TypedList</a>:<br>
+<dl><dt><a name="molChain-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__deepcopy__"><strong>__deepcopy__</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__rmul__"><strong>__rmul__</strong></a> = __mul__(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molChain-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-clone"><strong>clone</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="molChain-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="molChain-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molChain-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="molMol">class <strong>molMol</strong></a>(<a href="pross.html#TypedList">TypedList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;typed&nbsp;list&nbsp;containing&nbsp;only&nbsp;molecule&nbsp;objects,<br>
+as&nbsp;set&nbsp;by&nbsp;`is_a_mol<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="molMol-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, chains<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="molMol-assign_radii"><strong>assign_radii</strong></a>(self)</dt><dd><tt>Assign&nbsp;the&nbsp;radius&nbsp;of&nbsp;each&nbsp;of&nbsp;the&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-atom_coordinates"><strong>atom_coordinates</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;a&nbsp;python&nbsp;list&nbsp;with&nbsp;the&nbsp;coordinates&nbsp;of&nbsp;specified&nbsp;atoms.</tt></dd></dl>
+
+<dl><dt><a name="molMol-atoms"><strong>atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;atoms&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="molMol-atoms_not_with_name"><strong>atoms_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;assembly&nbsp;excluding&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molMol-atoms_with_name"><strong>atoms_with_name</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;atoms&nbsp;named&nbsp;with&nbsp;&nbsp;specified&nbsp;names.</tt></dd></dl>
+
+<dl><dt><a name="molMol-chains_with_name"><strong>chains_with_name</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;each&nbsp;of&nbsp;the&nbsp;chains&nbsp;named&nbsp;with&nbsp;specified&nbsp;names.</tt></dd></dl>
+
+<dl><dt><a name="molMol-delete_alt_locs"><strong>delete_alt_locs</strong></a>(self)</dt><dd><tt>delete_alt_locs&nbsp;-&nbsp;remove&nbsp;all&nbsp;secondary&nbsp;conformations</tt></dd></dl>
+
+<dl><dt><a name="molMol-delete_atoms_with_name"><strong>delete_atoms_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;atoms&nbsp;in&nbsp;assembly&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molMol-delete_hetero"><strong>delete_hetero</strong></a>(self)</dt><dd><tt>Executes&nbsp;the&nbsp;delete_hetero&nbsp;method&nbsp;on&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-delete_water"><strong>delete_water</strong></a>(self)</dt><dd><tt>Delete&nbsp;the&nbsp;water&nbsp;molecules&nbsp;from&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-num_atoms"><strong>num_atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;atoms&nbsp;in&nbsp;each&nbsp;of&nbsp;the&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="molMol-num_chain"><strong>num_chain</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="molMol-num_res"><strong>num_res</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;residues&nbsp;in&nbsp;each&nbsp;of&nbsp;the&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="molMol-pdb"><strong>pdb</strong></a>(self, file, renum<font color="#909090">=0</font>, seq<font color="#909090">=1</font>)</dt><dd><tt><a href="#molMol-pdb">pdb</a>(file,&nbsp;renum=0,&nbsp;seq=1)&nbsp;-&nbsp;write&nbsp;a&nbsp;PDB&nbsp;file<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;file&nbsp;name/open&nbsp;file&nbsp;handle&nbsp;(with&nbsp;.gz&nbsp;option),&nbsp;this&nbsp;function<br>
+will&nbsp;write&nbsp;the&nbsp;PDB&nbsp;coordinate&nbsp;file&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;current<br>
+molecular&nbsp;object.&nbsp;&nbsp;If&nbsp;renum&nbsp;is&nbsp;true,&nbsp;then&nbsp;residue&nbsp;indices&nbsp;will&nbsp;be<br>
+renumbered&nbsp;starting&nbsp;from&nbsp;1,&nbsp;if&nbsp;seq&nbsp;is&nbsp;true,&nbsp;then&nbsp;SEQRES&nbsp;records<br>
+will&nbsp;be&nbsp;written&nbsp;in&nbsp;the&nbsp;PDB&nbsp;file.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;a&nbsp;wrapper&nbsp;for&nbsp;pdbout.write_pdb.</tt></dd></dl>
+
+<dl><dt><a name="molMol-preserve_chain_hetero"><strong>preserve_chain_hetero</strong></a>(self)</dt><dd><tt>Executes&nbsp;the&nbsp;preserve_chain_hetero&nbsp;method&nbsp;on&nbsp;chains&nbsp;in&nbsp;the&nbsp;<a href="#molMol">molMol</a>&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-residues_with_name"><strong>residues_with_name</strong></a>(self, *names)</dt><dd><tt>Returns&nbsp;each&nbsp;of&nbsp;the&nbsp;residues&nbsp;named&nbsp;with&nbsp;specified&nbsp;names.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#TypedList">TypedList</a>:<br>
+<dl><dt><a name="molMol-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__deepcopy__"><strong>__deepcopy__</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__rmul__"><strong>__rmul__</strong></a> = __mul__(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molMol-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-clone"><strong>clone</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="molMol-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="molMol-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molMol-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="molResidue">class <strong>molResidue</strong></a>(<a href="pross.html#TypedList">TypedList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#TypedList">TypedList</a>&nbsp;containing&nbsp;only&nbsp;objects&nbsp;of&nbsp;the&nbsp;residue<br>
+type,&nbsp;set&nbsp;with&nbsp;`is_a_residue`<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="molResidue-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, atoms<font color="#909090">=None</font>, **kw)</dt></dl>
+
+<dl><dt><a name="molResidue-assign_radii"><strong>assign_radii</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="molResidue-atom_coordinates"><strong>atom_coordinates</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;coordinates&nbsp;of&nbsp;named&nbsp;atoms.<br>
+If&nbsp;names&nbsp;is&nbsp;omitted&nbsp;all&nbsp;atom&nbsp;coordinates&nbsp;are&nbsp;returned.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-atoms"><strong>atoms</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;atoms&nbsp;within&nbsp;the&nbsp;<a href="#molResidue">molResidue</a>&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-atoms_not_with_name"><strong>atoms_not_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;excluding&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molResidue-atoms_with_name"><strong>atoms_with_name</strong></a>(self, *names)</dt><dd><tt>returns&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molResidue-delete_atoms_with_name"><strong>delete_atoms_with_name</strong></a>(self, *names)</dt><dd><tt>delete&nbsp;atoms&nbsp;in&nbsp;residue&nbsp;with&nbsp;specified&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="molResidue-has_atom"><strong>has_atom</strong></a>(self, name)</dt><dd><tt>returns&nbsp;true&nbsp;if&nbsp;residue&nbsp;has&nbsp;an&nbsp;atom&nbsp;named&nbsp;'name'</tt></dd></dl>
+
+<dl><dt><a name="molResidue-num_atoms"><strong>num_atoms</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;number&nbsp;of&nbsp;atoms&nbsp;in&nbsp;residue</tt></dd></dl>
+
+<dl><dt><a name="molResidue-type"><strong>type</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pross.html#TypedList">TypedList</a>:<br>
+<dl><dt><a name="molResidue-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Adds&nbsp;a&nbsp;list&nbsp;to&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>,&nbsp;as&nbsp;long&nbsp;as&nbsp;it's&nbsp;of&nbsp;the&nbsp;same&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__deepcopy__"><strong>__deepcopy__</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__delitem__"><strong>__delitem__</strong></a>(self, i)</dt><dd><tt>Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__delslice__"><strong>__delslice__</strong></a>(self, i, j)</dt><dd><tt>Deleted&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;located&nbsp;between&nbsp;indices&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt><dd><tt>Returns&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;located&nbsp;at&nbsp;index&nbsp;i.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__getslice__"><strong>__getslice__</strong></a>(self, i, j)</dt><dd><tt>Returns&nbsp;a&nbsp;slice&nbsp;of&nbsp;the&nbsp;typed&nbsp;list&nbsp;between&nbsp;indexes&nbsp;i&nbsp;and&nbsp;j.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__mul__"><strong>__mul__</strong></a>(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;printable&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__rmul__"><strong>__rmul__</strong></a> = __mul__(self, other)</dt><dd><tt>Multiply&nbsp;set&nbsp;of&nbsp;elements&nbsp;and&nbsp;another,&nbsp;and&nbsp;store&nbsp;in&nbsp;new.elements.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__setitem__"><strong>__setitem__</strong></a>(self, i, v)</dt><dd><tt>Sets&nbsp;item&nbsp;at&nbsp;index&nbsp;i&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__setslice__"><strong>__setslice__</strong></a>(self, i, j, v)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;a&nbsp;slice&nbsp;of&nbsp;items&nbsp;between&nbsp;i&nbsp;and&nbsp;j&nbsp;to&nbsp;v.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;elements&nbsp;of&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-append"><strong>append</strong></a>(self, el)</dt><dd><tt>Add&nbsp;an&nbsp;element&nbsp;to&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-clone"><strong>clone</strong></a> = __copy__(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-count"><strong>count</strong></a>(self, el)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-extend"><strong>extend</strong></a>(self, els)</dt><dd><tt>Add&nbsp;an&nbsp;attribute&nbsp;to&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-index"><strong>index</strong></a>(self, el)</dt><dd><tt>Return&nbsp;an&nbsp;index&nbsp;if&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-indices"><strong>indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;a&nbsp;range&nbsp;of&nbsp;indices.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-insert"><strong>insert</strong></a>(self, pos, el)</dt><dd><tt>Insert&nbsp;an&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;at&nbsp;position&nbsp;pos.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-pop"><strong>pop</strong></a>(self)</dt><dd><tt>Remove&nbsp;the&nbsp;last&nbsp;element&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-remove"><strong>remove</strong></a>(self, el)</dt><dd><tt>Remove&nbsp;an&nbsp;element&nbsp;from&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-reverse"><strong>reverse</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;order&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-reverse_indices"><strong>reverse_indices</strong></a>(self, len<font color="#909090">=&lt;built-in function len&gt;</font>)</dt><dd><tt>Reverses&nbsp;indices&nbsp;of&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+<dl><dt><a name="molResidue-sort"><strong>sort</strong></a>(self)</dt><dd><tt>Sort&nbsp;the&nbsp;elements&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-atom_build"><strong>atom_build</strong></a>(t, atom<font color="#909090">=&lt;class pross.Atom3d&gt;</font>)</dt><dd><tt>Returns&nbsp;an&nbsp;Atom3b&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-fromint"><strong>fromint</strong></a>(v1, dis, v2, a, v3, t, sqrt<font color="#909090">=&lt;built-in function sqrt&gt;</font>, sin<font color="#909090">=&lt;built-in function sin&gt;</font>, cos<font color="#909090">=&lt;built-in function cos&gt;</font>)</dt></dl>
+ <dl><dt><a name="-get_sequences"><strong>get_sequences</strong></a>(file)</dt><dd><tt>Find&nbsp;the&nbsp;residue&nbsp;sequences&nbsp;and&nbsp;return&nbsp;them&nbsp;in&nbsp;a&nbsp;dictionary.</tt></dd></dl>
+ <dl><dt><a name="-is_atom"><strong>is_atom</strong></a>(o)</dt><dd><tt>Determine&nbsp;if&nbsp;an&nbsp;object&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;is&nbsp;an&nbsp;atom.</tt></dd></dl>
+ <dl><dt><a name="-is_chain"><strong>is_chain</strong></a>(o)</dt><dd><tt>Determine&nbsp;if&nbsp;an&nbsp;object&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;is&nbsp;a&nbsp;chain.</tt></dd></dl>
+ <dl><dt><a name="-is_mol"><strong>is_mol</strong></a>(o)</dt><dd><tt>Determine&nbsp;if&nbsp;an&nbsp;object&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;is&nbsp;a&nbsp;molecule.</tt></dd></dl>
+ <dl><dt><a name="-is_protein"><strong>is_protein</strong></a>(chain)</dt><dd><tt>Determines&nbsp;if&nbsp;residues&nbsp;in&nbsp;a&nbsp;chain&nbsp;are&nbsp;proteins.</tt></dd></dl>
+ <dl><dt><a name="-is_residue"><strong>is_residue</strong></a>(o)</dt><dd><tt>Determine&nbsp;if&nbsp;an&nbsp;object&nbsp;in&nbsp;a&nbsp;<a href="#TypedList">TypedList</a>&nbsp;is&nbsp;a&nbsp;residue.</tt></dd></dl>
+ <dl><dt><a name="-pack_pdb_line"><strong>pack_pdb_line</strong></a>(atom, idx, aan, aanum, ic, cn, f, fmt)</dt><dd><tt>pack_pdb_line&nbsp;-&nbsp;construct&nbsp;an&nbsp;ATOM&nbsp;record&nbsp;for&nbsp;a&nbsp;PDB&nbsp;file<br>
+&nbsp;<br>
+pack_pdb_line&nbsp;takes&nbsp;the&nbsp;following&nbsp;arguments:<br>
+&nbsp;<br>
+o&nbsp;&nbsp;atom&nbsp;&nbsp;&nbsp;An&nbsp;atom3d&nbsp;object,&nbsp;used&nbsp;for&nbsp;extracting&nbsp;coordinates,&nbsp;occupancy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atom&nbsp;name,&nbsp;alternate&nbsp;location,&nbsp;and&nbsp;B-factor.&nbsp;&nbsp;If&nbsp;these<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes&nbsp;aren't&nbsp;contained&nbsp;in&nbsp;the&nbsp;object,&nbsp;reasonable&nbsp;defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;used.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;idx&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;atom&nbsp;serial&nbsp;number<br>
+&nbsp;<br>
+o&nbsp;&nbsp;aan&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;containing&nbsp;amino&nbsp;residue&nbsp;(DNA&nbsp;base)<br>
+&nbsp;<br>
+o&nbsp;&nbsp;aanum&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;the&nbsp;containing&nbsp;residue&nbsp;(DNA&nbsp;base)<br>
+&nbsp;<br>
+o&nbsp;&nbsp;ic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;insertion&nbsp;code&nbsp;for&nbsp;homologous&nbsp;residue&nbsp;numbering<br>
+&nbsp;<br>
+o&nbsp;&nbsp;cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;chain<br>
+&nbsp;<br>
+o&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;open&nbsp;file&nbsp;handle&nbsp;where&nbsp;the&nbsp;format&nbsp;will&nbsp;be&nbsp;written.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;fmt&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;format&nbsp;to&nbsp;be&nbsp;used.&nbsp;&nbsp;Generally&nbsp;this&nbsp;is&nbsp;either&nbsp;for&nbsp;ATOM&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HETATM&nbsp;records.</tt></dd></dl>
+ <dl><dt><a name="-pad"><strong>pad</strong></a>(nm)</dt><dd><tt><a href="#-pad">pad</a>(nm)&nbsp;-&nbsp;a&nbsp;function&nbsp;to&nbsp;pad&nbsp;an&nbsp;atom&nbsp;name&nbsp;with&nbsp;appropraiate&nbsp;spaces</tt></dd></dl>
+ <dl><dt><a name="-rc_codes"><strong>rc_codes</strong></a>(chain, phi<font color="#909090">=None</font>, psi<font color="#909090">=None</font>, ome<font color="#909090">=None</font>, mcodes<font color="#909090">=None</font>)</dt><dd><tt><a href="#-rc_codes">rc_codes</a>(chain,&nbsp;phi,&nbsp;psi,&nbsp;ome)&nbsp;-&nbsp;return&nbsp;rotamer&nbsp;codes<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;protein&nbsp;chain&nbsp;(and&nbsp;optionally&nbsp;phi,&nbsp;psi,&nbsp;omega),&nbsp;this<br>
+function&nbsp;will&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;mesostate&nbsp;codes&nbsp;that<br>
+applies&nbsp;to&nbsp;the&nbsp;chain,&nbsp;as&nbsp;determined&nbsp;by&nbsp;res_rc.</tt></dd></dl>
+ <dl><dt><a name="-rc_ss"><strong>rc_ss</strong></a>(chain, phi<font color="#909090">=None</font>, psi<font color="#909090">=None</font>, ome<font color="#909090">=None</font>, mcodes<font color="#909090">=None</font>)</dt><dd><tt><a href="#-rc_ss">rc_ss</a>(chain,&nbsp;phi,&nbsp;psi,&nbsp;ome)&nbsp;-&nbsp;calculate&nbsp;secondary&nbsp;structure<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;calculates&nbsp;the&nbsp;secondary&nbsp;structure&nbsp;using&nbsp;the&nbsp;PROSS&nbsp;method<br>
+with&nbsp;rotamer&nbsp;codes.&nbsp;&nbsp;Given&nbsp;a&nbsp;chain,&nbsp;and&nbsp;optionally&nbsp;a&nbsp;list&nbsp;of&nbsp;phi,<br>
+psi,&nbsp;and&nbsp;omega,&nbsp;it&nbsp;calculates&nbsp;the&nbsp;backbone&nbsp;secondary&nbsp;structure&nbsp;of<br>
+the&nbsp;chain.&nbsp;&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;(phi,&nbsp;psi,&nbsp;ome,&nbsp;sst),&nbsp;where<br>
+phi,&nbsp;psi,&nbsp;and&nbsp;ome&nbsp;are&nbsp;calculated&nbsp;if&nbsp;not&nbsp;specified,&nbsp;and&nbsp;sst&nbsp;is&nbsp;the<br>
+secondary&nbsp;structure&nbsp;codes:&nbsp;H&nbsp;=&nbsp;helix,&nbsp;E&nbsp;=&nbsp;strand,&nbsp;P&nbsp;=&nbsp;PII,&nbsp;C&nbsp;=&nbsp;coil.</tt></dd></dl>
+ <dl><dt><a name="-read_pdb"><strong>read_pdb</strong></a>(f, as_protein<font color="#909090">=0</font>, as_rna<font color="#909090">=0</font>, as_dna<font color="#909090">=0</font>, all_models<font color="#909090">=0</font>, unpack<font color="#909090">=&lt;function unpack_pdb_line&gt;</font>, atom_build<font color="#909090">=&lt;function atom_build&gt;</font>)</dt><dd><tt>read_pdb&nbsp;-&nbsp;read&nbsp;the&nbsp;entire&nbsp;contents&nbsp;of&nbsp;a&nbsp;PDB&nbsp;file&nbsp;as&nbsp;a&nbsp;molcule&nbsp;object<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;parses&nbsp;a&nbsp;PDB&nbsp;file&nbsp;and&nbsp;returns&nbsp;a&nbsp;heirarchic&nbsp;data&nbsp;structure<br>
+that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;browse&nbsp;atomic&nbsp;contents.&nbsp;&nbsp;The&nbsp;heirarchic&nbsp;data&nbsp;elements<br>
+are&nbsp;built&nbsp;on&nbsp;'typed'&nbsp;lists.&nbsp;&nbsp;The&nbsp;first&nbsp;level&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;'chains',<br>
+where&nbsp;a&nbsp;chain&nbsp;can&nbsp;be&nbsp;non-specific&nbsp;or&nbsp;a&nbsp;protein,&nbsp;DNA,&nbsp;or&nbsp;RNA&nbsp;chain.&nbsp;&nbsp;A<br>
+chain&nbsp;(of&nbsp;any&nbsp;type)&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;residues,&nbsp;and&nbsp;a&nbsp;residue&nbsp;is&nbsp;a&nbsp;list&nbsp;of<br>
+atoms.&nbsp;&nbsp;Atoms&nbsp;are&nbsp;defined&nbsp;as&nbsp;a&nbsp;full-blown&nbsp;Python&nbsp;object,&nbsp;with&nbsp;its&nbsp;own<br>
+member&nbsp;functions&nbsp;and&nbsp;data&nbsp;(including&nbsp;x,&nbsp;y,&nbsp;z).&nbsp;&nbsp;Residues&nbsp;and&nbsp;chains&nbsp;are<br>
+derived&nbsp;from&nbsp;the&nbsp;<a href="#TypedList">TypedList</a>&nbsp;object,&nbsp;but&nbsp;can&nbsp;have&nbsp;their&nbsp;own&nbsp;member&nbsp;data<br>
+and&nbsp;functions--for&nbsp;example,&nbsp;the&nbsp;*pross*&nbsp;function&nbsp;is&nbsp;only&nbsp;available&nbsp;for<br>
+<a href="#Protein">Protein</a>&nbsp;chains,&nbsp;and&nbsp;chains&nbsp;in&nbsp;general&nbsp;have&nbsp;a&nbsp;public&nbsp;variable&nbsp;*name*<br>
+the&nbsp;described&nbsp;the&nbsp;SegID&nbsp;for&nbsp;that&nbsp;chain.<br>
+&nbsp;<br>
+read_pdb&nbsp;takes&nbsp;the&nbsp;following&nbsp;arguments:<br>
+&nbsp;<br>
+o&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;file&nbsp;containing&nbsp;PDB&nbsp;data.&nbsp;&nbsp;If&nbsp;*f*&nbsp;is&nbsp;a&nbsp;string,&nbsp;it&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;checked&nbsp;for&nbsp;a&nbsp;'.gz'&nbsp;extension.&nbsp;&nbsp;Given&nbsp;that&nbsp;it&nbsp;contains<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GZipped&nbsp;data,&nbsp;the&nbsp;file&nbsp;will&nbsp;be&nbsp;opened&nbsp;as&nbsp;a&nbsp;GZipFile&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parsed&nbsp;accordingly.&nbsp;&nbsp;If&nbsp;no&nbsp;'.gz'&nbsp;extension&nbsp;is&nbsp;present,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;file&nbsp;will&nbsp;be&nbsp;opened&nbsp;as&nbsp;a&nbsp;regular&nbsp;text&nbsp;file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternatively,&nbsp;f&nbsp;can&nbsp;be&nbsp;an&nbsp;open&nbsp;file&nbsp;object&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'readline'&nbsp;member&nbsp;function.&nbsp;&nbsp;If&nbsp;this&nbsp;is&nbsp;the&nbsp;case,&nbsp;the&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;not&nbsp;be&nbsp;closed&nbsp;upon&nbsp;exiting,&nbsp;and&nbsp;read_pdb&nbsp;will&nbsp;read<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;until&nbsp;the&nbsp;'END'&nbsp;token&nbsp;is&nbsp;reached.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;as_protein&nbsp;&nbsp;Read&nbsp;the&nbsp;PDB&nbsp;as&nbsp;a&nbsp;protein.&nbsp;&nbsp;It&nbsp;will&nbsp;have&nbsp;the&nbsp;protein<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specific&nbsp;member&nbsp;functions&nbsp;that&nbsp;allow&nbsp;calculation&nbsp;of&nbsp;torsion<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angles,&nbsp;etc.&nbsp;&nbsp;By&nbsp;default&nbsp;this&nbsp;is&nbsp;false,&nbsp;and&nbsp;the&nbsp;type&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;determined&nbsp;automatically&nbsp;from&nbsp;the&nbsp;residue&nbsp;types.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;as_rna&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;the&nbsp;PDB&nbsp;as&nbsp;RNA.&nbsp;&nbsp;As&nbsp;above,&nbsp;this&nbsp;is&nbsp;false&nbsp;by&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;determined&nbsp;automatically.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;as_dna&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;the&nbsp;PDB&nbsp;as&nbsp;DNA.&nbsp;&nbsp;As&nbsp;above,&nbsp;this&nbsp;is&nbsp;false&nbsp;by&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;determined&nbsp;automatically.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;all_models&nbsp;&nbsp;A&nbsp;boolean.&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;false.&nbsp;&nbsp;If&nbsp;true,&nbsp;all&nbsp;NMR&nbsp;models<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;read&nbsp;in&nbsp;as&nbsp;differing&nbsp;chains&nbsp;rather&nbsp;than&nbsp;just&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first&nbsp;one.</tt></dd></dl>
+ <dl><dt><a name="-res_rc"><strong>res_rc</strong></a>(r1, r2, r3<font color="#909090">=180</font>, mcodes<font color="#909090">=None</font>)</dt><dd><tt><a href="#-res_rc">res_rc</a>(r1,&nbsp;r2,&nbsp;r3)&nbsp;-&nbsp;get&nbsp;mesostate&nbsp;code&nbsp;for&nbsp;a&nbsp;residue<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;phi&nbsp;(r1),&nbsp;psi&nbsp;(r2),&nbsp;and&nbsp;omega&nbsp;(r3)&nbsp;torsion&nbsp;angle,&nbsp;calculate<br>
+the&nbsp;mesostate&nbsp;code&nbsp;that&nbsp;describes&nbsp;that&nbsp;residue.&nbsp;<br>
+A&nbsp;mesostate&nbsp;will&nbsp;be&nbsp;returned&nbsp;in<br>
+all&nbsp;but&nbsp;two&nbsp;cases:&nbsp;&nbsp;if&nbsp;omega&nbsp;deviates&nbsp;from&nbsp;planarity&nbsp;by&nbsp;more&nbsp;than&nbsp;90<br>
+degrees,&nbsp;'*'&nbsp;is&nbsp;returned.&nbsp;&nbsp;Also,&nbsp;if&nbsp;any&nbsp;torsions&nbsp;are&nbsp;greater&nbsp;than<br>
+180.0&nbsp;(biomol&nbsp;assignes&nbsp;999.0&nbsp;degrees&nbsp;to&nbsp;angles&nbsp;that&nbsp;that&nbsp;are<br>
+indeterminate),&nbsp;prosst.INVALID&nbsp;is&nbsp;returned.&nbsp;&nbsp;Here,&nbsp;r3&nbsp;defaults&nbsp;to<br>
+180.0.</tt></dd></dl>
+ <dl><dt><a name="-run"><strong>run</strong></a>(file, mcode)</dt><dd><tt>Reads&nbsp;a&nbsp;pdb&nbsp;file&nbsp;and&nbsp;iterates&nbsp;through&nbsp;each&nbsp;chain,&nbsp;and&nbsp;groups&nbsp;residues<br>
+Together,&nbsp;and&nbsp;then&nbsp;finally,&nbsp;writes&nbsp;the&nbsp;residues&nbsp;to&nbsp;angfile.</tt></dd></dl>
+ <dl><dt><a name="-terminate"><strong>terminate</strong></a>(snum, rn, cn, rnum, icode, f)</dt><dd><tt>terminate&nbsp;-&nbsp;write&nbsp;a&nbsp;TER&nbsp;record&nbsp;to&nbsp;a&nbsp;PDB&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-unpack_pdb_line"><strong>unpack_pdb_line</strong></a>(line, ATOF<font color="#909090">=&lt;function _atof&gt;</font>, ATOI<font color="#909090">=&lt;function _atoi&gt;</font>, STRIP<font color="#909090">=&lt;function strip&gt;</font>)</dt><dd><tt>Gather&nbsp;atom&nbsp;information&nbsp;from&nbsp;the&nbsp;pdb&nbsp;lines,&nbsp;convert&nbsp;them&nbsp;to&nbsp;a&nbsp;usable&nbsp;format.</tt></dd></dl>
+ <dl><dt><a name="-write_pdb"><strong>write_pdb</strong></a>(myMol, f, renum<font color="#909090">=0</font>, seq<font color="#909090">=None</font>, pack<font color="#909090">=&lt;function pack_pdb_line&gt;</font>)</dt><dd><tt>write_pdb&nbsp;-&nbsp;write&nbsp;a&nbsp;PDB&nbsp;file&nbsp;from&nbsp;a&nbsp;molecular&nbsp;object<br>
+&nbsp;<br>
+write_pdb&nbsp;takes&nbsp;a&nbsp;biomol.Mol&nbsp;object&nbsp;and&nbsp;creates&nbsp;a&nbsp;PDB&nbsp;file<br>
+based&nbsp;on&nbsp;the&nbsp;definitions&nbsp;given.&nbsp;&nbsp;It&nbsp;can&nbsp;support&nbsp;all&nbsp;atomic<br>
+properties&nbsp;as&nbsp;well&nbsp;as&nbsp;insertion&nbsp;codes&nbsp;and&nbsp;alternate&nbsp;locations.<br>
+Essentially,&nbsp;biomol&nbsp;is&nbsp;designed&nbsp;such&nbsp;that&nbsp;if&nbsp;the&nbsp;original&nbsp;molecule<br>
+has&nbsp;all&nbsp;that&nbsp;stuff&nbsp;it&nbsp;will&nbsp;be&nbsp;retained&nbsp;in&nbsp;the&nbsp;final&nbsp;PDB&nbsp;file.&nbsp;&nbsp;If<br>
+that&nbsp;is&nbsp;not&nbsp;desired,&nbsp;you&nbsp;must&nbsp;make&nbsp;the&nbsp;modifications&nbsp;to&nbsp;the&nbsp;Mol<br>
+object&nbsp;yourself&nbsp;(or&nbsp;use&nbsp;one&nbsp;of&nbsp;the&nbsp;utilities).<br>
+&nbsp;<br>
+write_pdb&nbsp;takes&nbsp;the&nbsp;following&nbsp;arguments:<br>
+&nbsp;<br>
+o&nbsp;&nbsp;myMol&nbsp;&nbsp;&nbsp;The&nbsp;**mol.Mol**&nbsp;object&nbsp;to&nbsp;be&nbsp;written.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;file&nbsp;instruction.&nbsp;&nbsp;This&nbsp;can&nbsp;be&nbsp;a&nbsp;string,&nbsp;in&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;f&nbsp;will&nbsp;be&nbsp;interpreted&nbsp;as&nbsp;a&nbsp;filename.&nbsp;&nbsp;If&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;f&nbsp;ends&nbsp;with&nbsp;.gz,&nbsp;the&nbsp;resulting&nbsp;file&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compressed&nbsp;using&nbsp;gzip.&nbsp;&nbsp;Alternatively,&nbsp;f&nbsp;can&nbsp;be&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;open&nbsp;file&nbsp;object&nbsp;(it&nbsp;must&nbsp;have&nbsp;the&nbsp;write&nbsp;attribute).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;f&nbsp;is&nbsp;an&nbsp;object,&nbsp;the&nbsp;PDB&nbsp;will&nbsp;be&nbsp;written&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object.&nbsp;&nbsp;When&nbsp;f&nbsp;is&nbsp;a&nbsp;file&nbsp;object,&nbsp;SEQRES&nbsp;and&nbsp;END<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;records&nbsp;will&nbsp;not&nbsp;be&nbsp;written&nbsp;by&nbsp;default.<br>
+&nbsp;<br>
+o&nbsp;&nbsp;seq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean&nbsp;that&nbsp;determines&nbsp;whether&nbsp;SEQRES&nbsp;records<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;written.&nbsp;&nbsp;By&nbsp;default&nbsp;this&nbsp;is&nbsp;true&nbsp;(except&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;case&nbsp;where&nbsp;f&nbsp;is&nbsp;an&nbsp;object).</tt></dd></dl>
+ <dl><dt><a name="-write_sequences"><strong>write_sequences</strong></a>(chain, f)</dt><dd><tt>write_sequences&nbsp;-&nbsp;write&nbsp;SEQRES&nbsp;records&nbsp;to&nbsp;a&nbsp;PDB&nbsp;file<br>
+&nbsp;<br>
+write_sequences&nbsp;takes&nbsp;the&nbsp;following&nbsp;arguments:<br>
+&nbsp;<br>
+o&nbsp;&nbsp;chain&nbsp;&nbsp;&nbsp;A&nbsp;mol.Chain&nbsp;type&nbsp;whose&nbsp;residues/bases&nbsp;will&nbsp;be&nbsp;displayed<br>
+&nbsp;<br>
+o&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;open&nbsp;file&nbsp;handle&nbsp;where&nbsp;information&nbsp;will&nbsp;be&nbsp;written.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CHI1_ATOMS</strong> = {'ARG': ('N', 'CA', 'CB', 'CG'), 'ASN': ('N', 'CA', 'CB', 'CG'), 'ASP': ('N', 'CA', 'CB', 'CG'), 'ASX': ('N', 'CA', 'CB', 'CG'), 'CYS': ('N', 'CA', 'CB', 'SG'), 'CYX': ('N', 'CA', 'CB', 'CG'), 'GLN': ('N', 'CA', 'CB', 'CG'), 'GLU': ('N', 'CA', 'CB', 'CG'), 'GLX': ('N', 'CA', 'CB', 'CG'), 'HIS': ('N', 'CA', 'CB', 'CG'), ...}<br>
+<strong>CHI2_ATOMS</strong> = {'ARG': ('CA', 'CB', 'CG', 'CD'), 'ASN': ('CA', 'CB', 'CG', 'OD1'), 'ASP': ('CA', 'CB', 'CG', 'OD1'), 'ASX': ('CA', 'CB', 'CG', 'OD1'), 'GLN': ('CA', 'CB', 'CG', 'CD'), 'GLU': ('CA', 'CB', 'CG', 'CD'), 'GLX': ('CA', 'CB', 'CG', 'CD'), 'HIS': ('CA', 'CB', 'CG', 'ND1'), 'ILE': ('CA', 'CB', 'CG1', 'CD1'), 'LEU': ('CA', 'CB', 'CG', 'CD1'), ...}<br>
+<strong>CHI3_ATOMS</strong> = {'ARG': ('CB', 'CG', 'CD', 'NE'), 'GLN': ('CB', 'CG', 'CD', 'OE1'), 'GLU': ('CB', 'CG', 'CD', 'OE1'), 'GLX': ('CB', 'CG', 'CD', 'OE1'), 'LYS': ('CB', 'CG', 'CD', 'CE'), 'MET': ('CB', 'CG', 'SD', 'CE')}<br>
+<strong>CHI4_ATOMS</strong> = {'ARG': ('CG', 'CD', 'NE', 'CZ'), 'LYS': ('CG', 'CD', 'CE', 'NZ')}<br>
+<strong>HAVE_EXTEND</strong> = True<br>
+<strong>HAVE_NUMPY</strong> = 0<br>
+<strong>HAVE_POP</strong> = True<br>
+<strong>MSDEFS</strong> = {'fgmeso': {'CODE_LENGTH': 2, 'DELTA': 30.0, 'HELIX': &lt;_sre.SRE_Pattern object&gt;, 'INVALID': '??', 'OMEGA': '**', 'PHI_OFF': 0.0, 'PII': {'Dk': 1, 'Dl': 1, 'Ek': 1, 'El': 1}, 'PSI_OFF': 15.0, 'RC_DICT': {(-150, -165): 'Ba', (-150, -135): 'Bb', (-150, -105): 'Bc', (-150, -75): 'Bd', (-150, -45): 'Be', (-150, -15): 'Bf', (-150, 15): 'Bg', (-150, 45): 'Bh', (-150, 75): 'Bi', (-150, 105): 'Bj', ...}, 'STRAND': &lt;_sre.SRE_Pattern object&gt;, ...}, 'oldmeso': {'CODE_LENGTH': 1, 'DELTA': 60.0, 'HELIX': &lt;_sre.SRE_Pattern object&gt;, 'INVALID': '?', 'OMEGA': '*', 'PHI_OFF': 0.0, 'PII': {'M': 1, 'R': 1}, 'PSI_OFF': 0.0, 'RC_DICT': {(-120, -120): 'H', (-120, -60): 'I', (-120, 0): 'J', (-120, 60): 'K', (-120, 120): 'L', (-120, 180): 'G', (-60, -120): 'N', (-60, -60): 'O', (-60, 0): 'P', (-60, 60): 'Q', ...}, 'STRAND': &lt;_sre.SRE_Pattern object&gt;, ...}}<br>
+<strong>ONE_LETTER_CODES</strong> = {'ALA': 'A', 'ARG': 'R', 'ASN': 'N', 'ASP': 'D', 'CYS': 'C', 'GLN': 'Q', 'GLU': 'E', 'GLY': 'G', 'HIS': 'H', 'ILE': 'I', ...}<br>
+<strong>RESIDUES</strong> = ['ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'CYX', 'GLN', 'GLU', 'GLX', 'GLY', 'HIS', 'HIP', 'ILE', 'LEU', 'LYS', 'MET', 'PHE', 'PRO', 'SER', 'THR', ...]<br>
+<strong>UP_ALTLOC</strong> = 2<br>
+<strong>UP_CHAINID</strong> = 4<br>
+<strong>UP_ICODE</strong> = 6<br>
+<strong>UP_NAME</strong> = 1<br>
+<strong>UP_OCCUPANCY</strong> = 10<br>
+<strong>UP_RESNAME</strong> = 3<br>
+<strong>UP_RESSEQ</strong> = 5<br>
+<strong>UP_SERIAL</strong> = 0<br>
+<strong>UP_TEMPFACTOR</strong> = 11<br>
+<strong>UP_X</strong> = 7<br>
+<strong>UP_Y</strong> = 8<br>
+<strong>UP_Z</strong> = 9<br>
+<strong>USAGE</strong> = '<font color="#c040c0">\n</font>python PROSS.py pdbfile [oldmeso | fgmeso]<font color="#c040c0">\n</font>Choo...d mesostate definitions.<font color="#c040c0">\n</font>Default is finegrained.<font color="#c040c0">\n</font>'<br>
+<strong>default</strong> = 'fgmeso'<br>
+<strong>helix</strong> = ('O', 'P')<br>
+<strong>mydefs</strong> = {'CODE_LENGTH': 1, 'DELTA': 60.0, 'HELIX': &lt;_sre.SRE_Pattern object&gt;, 'INVALID': '?', 'OMEGA': '*', 'PHI_OFF': 0.0, 'PII': {'M': 1, 'R': 1}, 'PSI_OFF': 0.0, 'RC_DICT': {(-120, -120): 'H', (-120, -60): 'I', (-120, 0): 'J', (-120, 60): 'K', (-120, 120): 'L', (-120, 180): 'G', (-60, -120): 'N', (-60, -60): 'O', (-60, 0): 'P', (-60, 60): 'Q', ...}, 'STRAND': &lt;_sre.SRE_Pattern object&gt;, ...}<br>
+<strong>pat_helix</strong> = '((O)|(P)){5,}'<br>
+<strong>pat_strand</strong> = '((L)|(G)|(F)|(A)){3,}'<br>
+<strong>strand</strong> = ('L', 'G', 'F', 'A')</td></tr></table>
+</body></html>
